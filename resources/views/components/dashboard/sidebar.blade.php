@@ -45,7 +45,21 @@
                             <li><a href="{{route('dashboard.product.create')}}">Создать</a></li>
                         </ul>
                     </li>
-                    
+                    <li class="dropdown">
+                        <a class="nav-link menu-title link-nav" href="{{route('dashboard.feedback.index')}}"><i data-feather="file-text"></i>
+                            <span>Обратная связь</span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link menu-title link-nav" href="{{route('dashboard.words.index')}}"><i data-feather="file-text"></i>
+                            <span>Словарь</span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link menu-title link-nav" href="{{route('dashboard.home.teg')}}"><i data-feather="file-text"></i>
+                            <span>Теги</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

@@ -18,6 +18,7 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Фото</th>
+                                        <th scope="col"> Категория Название</th>
                                         <th scope="col">Название</th>
                                         <th scope="col">Названия игрушек</th>
                                         <th scope="col">Артикул</th>
@@ -26,11 +27,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    {{-- @dd($products) --}}
                                     @php($k=1)
                                     @foreach($products as $product)
                                         <tr>
                                             <th scope="row">{{ $k }}</th>
                                             <td><img src="{{ $product->photos[0] }}" alt="" style="height: 100px; width: 100px"></td>
+                                            @if ($product->categories != null)
+                                                <td>{{ $product->categories->name_ru }}</td>
+                                            @endif
+                                            @if ($product->categories == null)
+                                                <td><h3>Null</h3></td>
+                                            @endif
                                             <td>{{ $product->name_ru }}</td>
                                             <td>{{ $product->title_ru }}</td>
                                             <td>{{ $product->article }}</td>

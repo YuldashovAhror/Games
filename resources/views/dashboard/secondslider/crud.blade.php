@@ -89,6 +89,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Фото</th>
                                 <th scope="col">Название</th>
                                 <th scope="col">Ссылки</th>
                                 <th scope="col" class="text-center">Действия</th>
@@ -98,6 +99,7 @@
                             @foreach ($sliders as $key => $slider)
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
+                                    <td><img src="{{ $slider->photos[0] }}" alt="" style="height: 100px; width: 100px"></td>
                                     <td>{{ $slider->name_ru }}</td>
                                     <td>{{ $slider->link }}</td>
                                     <td class="text-center">

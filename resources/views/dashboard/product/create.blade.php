@@ -68,7 +68,7 @@
                             </div>
                             <div class="col-4">
                                 <label class="form-label" for="exampleFormControlInput1">Названия игрушек Ru</label>
-                                <input class="form-control" id="exampleFormControlInput1" type="number" name="title_ru">
+                                <input class="form-control" id="exampleFormControlInput1" type="text" name="title_ru">
                             </div>
                             <div class="col-4">
                                 <label class="form-label" for="exampleFormControlInput1">Названия игрушек En</label>

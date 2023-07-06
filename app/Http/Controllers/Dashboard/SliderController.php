@@ -42,9 +42,9 @@ class SliderController extends BaseController
         $validatedData = $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:20480',
             'link' => 'nullable',
-            'name_uz' => 'required|string|max:255',
-            'name_ru' => 'required|string|max:255',
-            'name_en' => 'required|string|max:255',
+            'name_uz' => 'nullable',
+            'name_ru' => 'nullable',
+            'name_en' => 'nullable',
         ]);
 
         if (!empty($validatedData['photo'])) {
@@ -89,9 +89,9 @@ class SliderController extends BaseController
         $validatedData = $request->validate([
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:20480',
             'link' => 'nullable',
-            'name_uz' => 'required|string|max:255',
-            'name_ru' => 'required|string|max:255',
-            'name_en' => 'required|string|max:255',
+            'name_uz' => 'nullable',
+            'name_ru' => 'nullable',
+            'name_en' => 'nullable',
         ]);
 
         if (!empty($validatedData['photo'])) {

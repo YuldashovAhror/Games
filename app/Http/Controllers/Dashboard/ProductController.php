@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Atribute;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -10,16 +11,17 @@ use Illuminate\Support\Str;
 
 class ProductController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $atributeController;
+    public function __construct(AtributeController $atributeController)
+    {
+        $this->atributeController = $atributeController;
+    }
+
     public function index()
     {
-        $products = Product::orderBy('id', 'desc')->get();
+        $products = Product::with('categories')->orderBy('id', 'desc')->get();
         return view('dashboard.product.index', [
-            'products'=>$products
+            'products' => $products
         ]);
     }
 
@@ -32,7 +34,7 @@ class ProductController extends BaseController
     {
         $categories = Category::orderBy('id', 'desc')->get();
         return view('dashboard.product.create', [
-            'categories'=>$categories
+            'categories' => $categories
         ]);
     }
 
@@ -47,19 +49,18 @@ class ProductController extends BaseController
         // dd($request->all());
         $products = new Product();
         $request = $request->toArray();
-        if (!empty($request['photos'])){
+        if (!empty($request['photos'])) {
             $photos = [];
-            foreach ($request['photos'] as $photo){
+            foreach ($request['photos'] as $photo) {
                 array_push($photos, $this->photoSave($photo, 'image/product'));
             }
             $request['photos'] = $photos;
-            
         }
-    
-        if(!empty($request['sertificat'])){
-            $img_name = Str::random(10).'.'.$request['sertificat']->getClientOriginalExtension();
+
+        if (!empty($request['sertificat'])) {
+            $img_name = Str::random(10) . '.' . $request['sertificat']->getClientOriginalExtension();
             $request['sertificat']->move(public_path('/image/product'), $img_name);
-            $products->sertificat = '/image/product/'.$img_name;
+            $products->sertificat = '/image/product/' . $img_name;
         }
         $products->name_uz = $request['name_uz'];
         $products->name_ru = $request['name_ru'];
@@ -102,8 +103,8 @@ class ProductController extends BaseController
         $product = Product::find($id);
         $categories = Category::orderBy('id', 'desc')->get();
         return view('dashboard.product.edit', [
-            'categories'=>$categories,
-            'product'=>$product,
+            'categories' => $categories,
+            'product' => $product,
         ]);
     }
 
@@ -118,23 +119,25 @@ class ProductController extends BaseController
     {
         $products = Product::find($id);
         $request = $request->toArray();
-        if (!empty($request['photos'])){
-            $photos = [];
-            foreach ($request['photos'] as $photo){
+        if (!empty($request['photos'])) {
+            foreach ($products->photos as $photo) {
                 $this->fileDelete(null, null, $photo);
+            }
+            $photos = [];
+            foreach ($request['photos'] as $photo) {
                 array_push($photos, $this->photoSave($photo, 'image/product'));
             }
             $request['photos'] = $photos;
             $products->photos = $photos;
         }
-    
-        if(!empty($request['sertificat'])){
-            if(is_file(public_path($products->sertificat))){
+
+        if (!empty($request['sertificat'])) {
+            if (is_file(public_path($products->sertificat))) {
                 unlink(public_path($products->sertificat));
             }
-            $img_name = Str::random(10).'.'.$request['sertificat']->getClientOriginalExtension();
+            $img_name = Str::random(10) . '.' . $request['sertificat']->getClientOriginalExtension();
             $request['sertificat']->move(public_path('/image/product'), $img_name);
-            $products->sertificat = '/image/product/'.$img_name;
+            $products->sertificat = '/image/product/' . $img_name;
         }
         $products->name_uz = $request['name_uz'];
         $products->name_ru = $request['name_ru'];
@@ -148,7 +151,7 @@ class ProductController extends BaseController
         $products->discription_ru = $request['discription_ru'];
         $products->discription_en = $request['discription_en'];
         $products->star = $request['star'];
-        
+
         $products->save();
         // dd('asd');
         // Product::create($request);
@@ -163,11 +166,14 @@ class ProductController extends BaseController
      */
     public function destroy($id)
     {
+        foreach (Atribute::where('product_id', $id)->get() as $prod){
+            $this->atributeController->destroy($prod->id);
+        }
         $product = Product::find($id);
-        foreach ($product->photos as $photo){
+        foreach ($product->photos as $photo) {
             $this->fileDelete(null, null, $photo);
         }
-        if(is_file(public_path($product->sertificat))){
+        if (is_file(public_path($product->sertificat))) {
             unlink(public_path($product->sertificat));
         }
         $product->delete();

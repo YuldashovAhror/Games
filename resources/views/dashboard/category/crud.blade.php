@@ -53,7 +53,7 @@
                                     <div class="col-12 text-center">
                                         {{-- <i data-feather="loader" style="height: 100px; width: 100px"></i> --}}
                                     </div>
-                                    <input class="form-control" id="exampleFormControlInput1" type="file" name="photo" required>
+                                    <input class="form-control" id="exampleFormControlInput1" type="file" name="photo">
                                 </div>
                             </div>
                             <div class="col-5">
@@ -106,8 +106,20 @@
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>{{ $category->name_ru }}</td>
-                                    <td><img src="{{ $category->photo }}" alt="" style="width: 100px; height: 100px;"></td>
-                                    <td><img src="{{ $category->icon }}" alt="" style="width: 100px; height: 100px;"></td>
+                                    @if ($category->photo != null)
+                                        <td><img src="{{ $category->photo }}" alt="" style="width: 100px; height: 100px;"></td>
+                                    @endif
+                                    @if ($category->photo == null)
+                                        <td><h3>Null</h3></td>
+                                    @endif
+
+                                    @if ($category->icon != null)
+                                        <td><img src="{{ $category->icon }}" alt="" style="width: 100px; height: 100px;"></td>
+                                    @endif
+
+                                    @if ($category->icon == null)
+                                        <td><h3>Null</h3></td>
+                                    @endif
                                     <td class="text-center">
                                         <button class="btn btn-xs btn-success" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalCenter{{ $category->id }}Edit"><i
@@ -138,7 +150,7 @@
                                                                                 </div>
                                                                                 <input class="form-control"
                                                                                     id="exampleFormControlInput1"
-                                                                                    type="file" name="file">
+                                                                                    type="file" name="photo">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-5">
@@ -150,7 +162,7 @@
                                                                                 </div>
                                                                                 <input class="form-control"
                                                                                     id="exampleFormControlInput1"
-                                                                                    type="file" name="file">
+                                                                                    type="file" name="icon">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-1">

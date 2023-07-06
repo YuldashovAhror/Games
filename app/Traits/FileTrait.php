@@ -25,7 +25,6 @@ trait FileTrait
 
     public function fileSave($video, $directory)
     {
-        // dd('asd');
         $videoName = Str::random(10) . '.' . $video->getClientOriginalExtension();
 
         $video->move(public_path() . '/' . $directory . '/', $videoName);
@@ -34,9 +33,9 @@ trait FileTrait
 
     public function fileDelete($model, $id, $col_name)
     {
+        // dd('asd');
         if (!is_null($model)){
             $model = 'App\Models' . $model;
-            dd('asd');
             if (is_file(public_path($model::find($id)->$col_name))){
                 unlink(public_path() . $model::find($id)->$col_name);
             }

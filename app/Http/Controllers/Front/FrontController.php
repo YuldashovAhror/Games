@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\CatalogTeg;
+use App\Models\Category;
+use App\Models\InstagramSlider;
+use App\Models\Product;
+use App\Models\SecondSlider;
+use App\Models\Slider;
+
 class FrontController
 {
     public function index()
@@ -13,6 +20,15 @@ class FrontController
             app()->setLocale(session()->get('locale'));
         }
         $lang = session()->get('locale');
-        return view('front.welcome', compact('lang'));
+
+        $tag = CatalogTeg::find(1);
+        $sliders = Slider::orderBy('id', 'desc')->get();
+        $categories = Category::orderBy('id', 'desc')->get();
+        $products = Product::orderBy('id', 'desc')->get();
+        $second_sliders = SecondSlider::orderBy('id', 'desc')->get();
+        $instagram_sliders = InstagramSlider::orderBy('id', 'desc')->get();
+
+        return view('front.welcome', compact('lang', 'sliders', 'categories', 'products', 'second_sliders', 'instagram_sliders', 'tag'));
     }
+
 }

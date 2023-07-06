@@ -1,0 +1,14 @@
+*Магазин по категориям 
+
+shop-carousel__item-yellow - желтый
+shop-carousel__item-blue - голубой
+shop-carousel__item-red - красный
+
+
+*category-item current класс для текущего
+
+*form-done показать при отправке с формы "подари ребенку"
+
+*main-carousel__circle максимум 8 картинок, минимум 2, через бэк ограничение поставить
+
+*products-item__buttons  active класс для нажатого

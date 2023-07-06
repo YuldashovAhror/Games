@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
+            $table->integer('product_id')->nullable();
             $table->string('name');
             $table->string('phone');
             $table->timestamps();
