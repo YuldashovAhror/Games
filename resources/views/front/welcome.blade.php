@@ -301,10 +301,10 @@
 			</h2>
 			<form action="#" class="gift-form">
 				<div class="gift-form__wrap">
-					<input type="text" placeholder="Ваше имя" id="first_name" class="form_name wow fadeInUp" data-wow-delay=".4s">
-					<input type="tel" placeholder="Телефон" id="phone" class="form_tel wow fadeInUp" data-wow-delay=".6s">
+					<input type="text" placeholder="Ваше имя" id="first_name1" class="form_name wow fadeInUp" data-wow-delay=".4s">
+					<input type="tel" placeholder="Телефон" id="phone1" class="form_tel wow fadeInUp" data-wow-delay=".6s">
 					<input id="token" value="{{ csrf_token() }}" type="hidden" required>
-					<button class="btn wow fadeInUp" id="button" onclick="send1()" type="button" data-wow-delay=".8s">
+					<button class="btn wow fadeInUp" id="button" onclick="send2()" type="button" data-wow-delay=".8s">
 						{{__('asd.Отправить')}}
 					</button>
 				</div>
@@ -334,12 +334,15 @@
 	</section>
 
 	<!-- FOOTER -->
-	<script>
-		function send1() {
 	
+	<div class="footer-pattern"></div>
+	@include('components.front.footer')
+	<script>
+		function send2() {
 			let token = $("#token").val();
-			let name = $('#first_name').val();
-			let phone = $('#phone').val();
+			let name = $('#first_name1').val();
+			let phone = $('#phone1').val();
+			console.log(name)
 			$.ajax({
 				token: token,
 				type: "get",
@@ -351,21 +354,19 @@
 				contentType: "application/json; charset=utf-8",
 				dataType: "json",
 			});
-			setTimeout(() => {
-				$('.feedback-wrap').hide()
-				$('.feedback-done').show()
-				$("#first_name").val('');
-				$("#phone").val('');
-			}, 1000)
-			setTimeout(() => {
-				$('.feedback-wrap').show()
-				$('.feedback-done').hide()
-				$('.feedback').hide()
-			}, 3000)
+			// setTimeout(() => {
+			// 	$('.feedback-wrap').hide()
+			// 	$('.feedback-done').show()
+			// 	$("#first_name").val('');
+			// 	$("#phone").val('');
+			// }, 1000)
+			// setTimeout(() => {
+			// 	$('.feedback-wrap').show()
+			// 	$('.feedback-done').hide()
+			// 	$('.feedback').hide()
+			// }, 3000)
 		}
 	</script>
-	<div class="footer-pattern"></div>
-	@include('components.front.footer')
 	<script src="issets/js/jquery-3.4.1.min.js"></script>
 	<script src="issets/js/jquery.inputmask.min.js"></script>
 	<script src="issets/js/owl.carousel.js"></script>

@@ -40,7 +40,6 @@ class FeedbackController extends Controller
         // $group = [
         //     'text' => "Имя: " . $request->name . "\n" . "Телефон: " . $request->phone . "\n" ."Тип:" . Type::find($request->type)->name_ru."\n" . "Ширина:".$request->width . "\n". "Высота:".$request->height . "\n" . "Проект: Poklik", 'chat_id' => '-814757227'];
         // file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query($group));
-        dd($request->all());
         $feedback = new Feedback();
         $feedback->name = $request->name;
         $feedback->phone = $request->phone;
