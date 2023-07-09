@@ -40,16 +40,16 @@ class SecondSliderController extends BaseController
     public function store(Request $request)
     {
         // dd($request->all());
-        $request = $request->toArray();
-        if (!empty($request['photos'])){
-            $photos = [];
-            foreach ($request['photos'] as $photo){
-                array_push($photos, $this->photoSave($photo, 'image/secondslider'));
-            }
-            $request['photos'] = $photos;
-        }
-        SecondSlider::create($request);
-        return back()->with('success', 'Data uploaded successfully.');
+        // $request = $request->toArray();
+        // if (!empty($request['photos'])){
+        //     $photos = [];
+        //     foreach ($request['photos'] as $photo){
+        //         array_push($photos, $this->photoSave($photo, 'image/secondslider'));
+        //     }
+        //     $request['photos'] = $photos;
+        // }
+        // SecondSlider::create($request);
+        // return back()->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -83,16 +83,20 @@ class SecondSliderController extends BaseController
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
+        
         $request = $request->toArray();
-        if (!empty($request['photos'])){
-            foreach (SecondSlider::find($id)->photos as $photo){
-                $this->fileDelete(null, null, $photo);
-            }
-            $photos = [];
-            foreach ($request['photos'] as $photo){
-                array_push($photos, $this->photoSave($photo, 'image/secondslider'));
-            }
-            $request['photos'] = $photos;
+        if (!empty($request['photo'])){
+            $this->fileDelete('\SecondSlider', $id, 'photo');
+            $request['photo'] = $this->photoSave($request['photo'], 'image/secondslider');
+        }
+        if (!empty($request['photo2'])){
+            $this->fileDelete('\SecondSlider', $id, 'photo');
+            $request['photo2'] = $this->photoSave($request['photo2'], 'image/secondslider');
+        }
+        if (!empty($request['photo3'])){
+            $this->fileDelete('\SecondSlider', $id, 'photo');
+            $request['photo3'] = $this->photoSave($request['photo3'], 'image/secondslider');
         }
         SecondSlider::find($id)->update($request);
         return back()->with('success', 'Data updated successfully.');

@@ -11,6 +11,7 @@ class Product extends Model
 
     protected $fillable = [
         'category_id',
+        'padcategory_id',
         'name_uz',
         'name_ru',
         'name_en',
@@ -34,10 +35,17 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    public function padcategories()
+    {
+        return $this->belongsTo(PadCategory::class, 'padcategory_id');
+    }
+
     public function atributes()
     {
         return $this->hasMany(Atribute::class, 'product_id');
     }
+    
     public function feedbacks()
     {
         return $this->hasMany(Feedback::class, 'product_id');

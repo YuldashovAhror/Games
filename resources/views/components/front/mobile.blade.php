@@ -22,13 +22,24 @@
                     Каталог
                 </a>
             </li>
+           <li class="mobile-menu__dropdown">
+				<div>
+					Клиентам
+				</div>
+				<ul>
+					<li>
+						<a href="#">Документы таможенный союз</a>
+					</li>
+					<li>
+						<a href="#">Презентации</a>
+					</li>
+					<li>
+						<a href="#">Каталоги продукции для скачивания</a>
+					</li>
+				</ul>
+			</li>
             <li>
-                <a href="#" target="_blank" rel="nofollow">
-                    Мы в инстаграм
-                </a>
-            </li>
-            <li>
-                <a href="contact.html">
+                <a href="#contact">
                     Контакты
                 </a>
             </li>

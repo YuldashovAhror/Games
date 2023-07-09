@@ -23,12 +23,12 @@ class FrontController
 
         $tag = CatalogTeg::find(1);
         $sliders = Slider::orderBy('id', 'desc')->get();
-        $categories = Category::orderBy('id', 'desc')->get();
+        $categories = Category::with('padcategories')->orderBy('id', 'desc')->get();
         $products = Product::orderBy('id', 'desc')->get();
-        $second_sliders = SecondSlider::orderBy('id', 'desc')->get();
+        $second_slider = SecondSlider::find(1);
         $instagram_sliders = InstagramSlider::orderBy('id', 'desc')->get();
 
-        return view('front.welcome', compact('lang', 'sliders', 'categories', 'products', 'second_sliders', 'instagram_sliders', 'tag'));
+        return view('front.welcome', compact('lang', 'sliders', 'categories', 'products', 'second_slider', 'instagram_sliders', 'tag'));
     }
 
 }

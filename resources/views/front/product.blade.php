@@ -236,21 +236,31 @@
                             <div class="products-item__mark">
                                 @if ($product->star == 1)
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
+                                    <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                    <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                    <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                    <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
                                 @endif
                                 @if ($product->star == 2)
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
+                                    <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                    <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                    <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
                                 @endif
                                 @if ($product->star == 3)
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
+                                    <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                    <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
                                 @endif
                                 @if ($product->star == 4)
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
+                                    <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
                                 @endif
                                 @if ($product->star == 5)
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">

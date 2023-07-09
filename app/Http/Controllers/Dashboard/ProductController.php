@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Atribute;
 use App\Models\Category;
+use App\Models\PadCategory;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,7 +20,7 @@ class ProductController extends BaseController
 
     public function index()
     {
-        $products = Product::with('categories')->orderBy('id', 'desc')->get();
+        $products = Product::with(['categories', 'padcategories'])->orderBy('id', 'desc')->get();
         return view('dashboard.product.index', [
             'products' => $products
         ]);
@@ -33,8 +34,10 @@ class ProductController extends BaseController
     public function create()
     {
         $categories = Category::orderBy('id', 'desc')->get();
+        $padcategories = PadCategory::orderBy('id', 'desc')->get();
         return view('dashboard.product.create', [
-            'categories' => $categories
+            'categories' => $categories,
+            'padcategories' => $padcategories,
         ]);
     }
 
@@ -74,6 +77,7 @@ class ProductController extends BaseController
         $products->discription_ru = $request['discription_ru'];
         $products->discription_en = $request['discription_en'];
         $products->star = $request['star'];
+        $products->padcategory_id = $request['padcategory_id'];
         $products->photos = $photos;
         $products->save();
         // dd('asd');
@@ -102,9 +106,11 @@ class ProductController extends BaseController
     {
         $product = Product::find($id);
         $categories = Category::orderBy('id', 'desc')->get();
+        $padcategories = PadCategory::orderBy('id', 'desc')->get();
         return view('dashboard.product.edit', [
             'categories' => $categories,
             'product' => $product,
+            'padcategories' => $padcategories,
         ]);
     }
 
@@ -151,6 +157,7 @@ class ProductController extends BaseController
         $products->discription_ru = $request['discription_ru'];
         $products->discription_en = $request['discription_en'];
         $products->star = $request['star'];
+        $products->padcategory_id = $request['padcategory_id'];
 
         $products->save();
         // dd('asd');

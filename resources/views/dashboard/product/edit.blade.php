@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <div class="row">
                             <label class="form-label" for="exampleFormControlInput1">Выберите категорию</label>
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div class="col-12 text-center">
                                     <i data-feather="loader" style="height: 149px; width: 149px"></i>
                                 </div>
@@ -37,7 +37,18 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
+                                <label class="form-label" for="exampleFormControlInput1">Выберите категорию</label>
+                                <div class="col-12 text-center">
+                                    <i data-feather="loader" style="height: 120px; width: 120px"></i>
+                                </div>
+                                <select name="padcategory_id" class="form-control">
+                                    @foreach ($padcategories as $padcategory)
+                                        <option value="{{ $padcategory->id }}">{{ $padcategory->name_ru }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-4">
                                 <label class="form-label mb-3" for="exampleFormControlInput1">Фотографии продукта</label>
                                 <div class="col-12 text-center mb-3">
                                     <img src="{{ $product->photos[0] }}" alt="" style="height: 100px; width: 100px"></td>

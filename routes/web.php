@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Dashboard\AtributeController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\ClientController;
 use App\Http\Controllers\Dashboard\FeedbackController;
+use App\Http\Controllers\Dashboard\PadCategoryController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\SecondSliderController;
 use App\Http\Controllers\Dashboard\SliderController;
@@ -39,6 +41,7 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/feedback', [FrontFeedbackController::class, 'store']);
 // Route::get('/product', [FrontProductController::class, 'index'])->name('product.index');
 Route::get('/product/{id}/show', [FrontProductController::class, 'show'])->name('product.show');
+Route::get('/padcategory/{id}/show', [FrontProductController::class, 'padshow'])->name('padcategory.show');
 Route::get('/catalog/{id}/show', [CatalogController::class, 'show'])->name('catalog.show');
 
 //Dashboard
@@ -52,6 +55,8 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('/secondslider', SecondSliderController::class);
         Route::resource('/slider', SliderController::class);
         Route::resource('/product', ProductController::class);
+        Route::resource('/client', ClientController::class);
+        Route::resource('/padcategory', PadCategoryController::class);
         Route::get('/product/{id}/atribute', [AtributeController::class, 'index'])->name('atribute.index');
         Route::post('/atribute', [AtributeController::class, 'store'])->name('atribute.store');
         Route::put('/atribute/{id}/update', [AtributeController::class, 'update'])->name('atribute.update');
@@ -59,8 +64,6 @@ Route::group(['prefix' => 'dashboard'], function (){
         
         Route::get('dashboard/hometeg', [TagsController::class, 'home'])->name('home.teg');
         Route::put('dashboard/{id}/hometeg', [TagsController::class, 'update'])->name('tags.update');
-
-        
         Route::get('dashboard/words', [WordController::class, 'index'])->name('words.index');
     });
 });

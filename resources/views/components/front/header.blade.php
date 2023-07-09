@@ -22,13 +22,19 @@
                         {{__('asd.Каталог')}}
                     </a>
                 </li>
+                <li class="header-menu__item header-menu__dropdown">
+					<div class="header-menu__name">
+						<span>{{__('asd.Клиентам')}}</span> <img src="../../../issets/img/icons/chevron-down.svg" alt="ico">
+					</div>
+					<div class="header-lang__list">
+                        @foreach (App\Models\Client::orderBy('id', 'desc')->get() as $client)
+						<a href="{{$client->photo}}" download >{{$client['name_'.$lang]}}</a>
+                        @endforeach
+					</div>
+				</li>
+				</li>
                 <li class="header-menu__item">
-                    <a href="#" class="header-menu__link" target="_blank" rel="nofollow">
-                        {{__('asd.Мы в инстаграм')}}
-                    </a>
-                </li>
-                <li class="header-menu__item">
-                    <a href="contact.html" class="header-menu__link">
+                    <a href="#contact" class="header-menu__link">
                         {{__('asd.Контакты')}}
                     </a>
                 </li>

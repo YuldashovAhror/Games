@@ -3,7 +3,7 @@ $(window).on('load', () => {
     let rootFont = parseInt($(':root').css('font-size'))
 
 
-    $('.preloader').delay(500).fadeOut(800)
+    $('.preloader').delay(1500).fadeOut(800)
 
     //________MENU__________
 
@@ -15,9 +15,16 @@ $(window).on('load', () => {
         $('.mobile-menu').removeClass('active')
     })
 
+
+    $('.mobile-menu__list li a').click(function() {
+        if($(this).attr('href').includes('contact')) {
+            $('.mobile-menu').removeClass('active')
+        }
+    })
+
     //_________FEEDBACK__________
 
-    $('.feedback-open, .popup__on').click(e => {
+    $('.feedback-open').click(e => {
         e.preventDefault()
         $('.feedback').fadeIn(600); 
     })
@@ -114,6 +121,11 @@ $(window).on('load', () => {
         currentImage--
         changeImage()
     })
+
+    setInterval(() => {
+        currentImage++
+        changeImage()
+    }, 2500)
 
 
 
@@ -239,7 +251,7 @@ $(window).on('load', () => {
     .add(new ymaps.Placemark([41.26718911400398, 69.18868093863472], {
     }, {
         iconLayout: 'default#image',
-        iconImageHref: 'img/icons/marker.svg',
+        iconImageHref: '/issets/img/icons/marker.svg',
         iconImageSize: [40, 55],
     }))
     }

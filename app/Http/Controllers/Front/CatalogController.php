@@ -17,7 +17,7 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        $categories = Category::with('products')->orderBy('id', 'desc')->get();
+        $categories = Category::with(['products', 'padcategories'])->orderBy('id', 'desc')->get();
         $products = Product::orderBy('id', 'desc')->get();
         $tag = CatalogTeg::find(1);
         return view('front.catalog', [

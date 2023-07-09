@@ -28,7 +28,7 @@
                     @csrf
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-4">
                                 <label class="form-label" for="exampleFormControlInput1">Выберите категорию</label>
                                 <select name="category_id" class="form-control">
                                     @foreach ($categories as $category)
@@ -36,7 +36,15 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
+                                <label class="form-label" for="exampleFormControlInput1">Выберите категорию</label>
+                                <select name="padcategory_id" class="form-control">
+                                    @foreach ($padcategories as $padcategory)
+                                        <option value="{{ $padcategory->id }}">{{ $padcategory->name_ru }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="exampleFormControlInput1">Фотографии продукта</label>
                                     <div class="col-12 text-center">

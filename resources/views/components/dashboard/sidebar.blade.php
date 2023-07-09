@@ -34,8 +34,18 @@
                         </a>
                     </li>
                     <li class="dropdown">
+                        <a class="nav-link menu-title link-nav" href="{{route('dashboard.padcategory.index')}}"><i data-feather="file-text"></i>
+                            <span>PadCategory</span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
                         <a class="nav-link menu-title link-nav" href="{{route('dashboard.secondslider.index')}}"><i data-feather="file-text"></i>
                             <span>Второй слайдер</span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link menu-title link-nav" href="{{route('dashboard.client.index')}}"><i data-feather="file-text"></i>
+                            <span>Клиентыр</span>
                         </a>
                     </li>
 

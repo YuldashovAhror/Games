@@ -68,7 +68,7 @@
     <section class="category">
         <div class="container">
             @foreach ($categories as $key => $category)
-                <a href="{{ route('catalog.show', $category) }}" class="category-item">
+                <div class="category-item">
                     <div class="category-item__ico">
                         <img src="{{ $category->icon }}" alt="ico">
                     </div>
@@ -81,7 +81,17 @@
                                 fill="currentColor" />
                         </svg>
                     </div>
-                </a>
+                    <a href="{{ route('catalog.show', $category) }}" class="category-item__link"></a>
+                    <div class="category-item__dropdown">
+                        <ul>
+                            @foreach ($category->padcategories as $padcategory)
+                                <li>
+                                    <a href="{{route('padcategory.show', $padcategory->id)}}">{{$padcategory['name_'.$lang]}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             @endforeach
         </div>
         <div class="category-balloons balloons">
@@ -144,21 +154,31 @@
                         <div class="products-item__mark">
                             @if ($product->star == 1)
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
+                                <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
                             @endif
                             @if ($product->star == 2)
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
+                                <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
                             @endif
                             @if ($product->star == 3)
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
+                                <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
+                                <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
                             @endif
                             @if ($product->star == 4)
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
+                                <img src="../../../issets/img/icons/star-grey.svg" alt="ico">
                             @endif
                             @if ($product->star == 5)
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">

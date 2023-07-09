@@ -19,6 +19,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Фото</th>
                                         <th scope="col"> Категория Название</th>
+                                        <th scope="col"> Pad Категория Название</th>
                                         <th scope="col">Название</th>
                                         <th scope="col">Названия игрушек</th>
                                         <th scope="col">Артикул</th>
@@ -37,6 +38,12 @@
                                                 <td>{{ $product->categories->name_ru }}</td>
                                             @endif
                                             @if ($product->categories == null)
+                                                <td><h3>Null</h3></td>
+                                            @endif
+                                            @if ($product->padcategories != null)
+                                                <td>{{ $product->padcategories->name_ru }}</td>
+                                            @endif
+                                            @if ($product->padcategories == null)
                                                 <td><h3>Null</h3></td>
                                             @endif
                                             <td>{{ $product->name_ru }}</td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\PadCategory;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -11,9 +12,11 @@ use Illuminate\Support\Str;
 class CategoryController extends BaseController
 {
     private $productController;
-    public function __construct(ProductController $productController)
+    private $padcategory;
+    public function __construct(ProductController $productController, PadCategoryController $padcategory)
     {
         $this->productController = $productController;
+        $this->padcategory = $padcategory;
     }
 
     public function index()
@@ -53,9 +56,9 @@ class CategoryController extends BaseController
         if (!empty($validatedData['ok'])) {
             $validatedData['ok'] = 1;
         }
-        $category->name_uz = $request->name_uz;
-        $category->name_ru = $request->name_ru;
-        $category->name_en = $request->name_en;
+        $category->name_uz = $validatedData['name_uz'];
+        $category->name_ru = $validatedData['name_ru'];
+        $category->name_en = $validatedData['name_en'];
         $category->save();
 
         return redirect()->route('dashboard.category.index')->with('success', 'Data uploaded successfully.');
@@ -119,6 +122,9 @@ class CategoryController extends BaseController
         Category::find($id)->delete();
         foreach (Product::where('category_id', $id)->get() as $prod) {
             $this->productController->destroy($prod->id);
+        }
+        foreach (PadCategory::where('padcategory_id', $id)->get() as $prod) {
+            $this->padcategory->destroy($prod->id);
         }
         return back()->with('success', 'Data deleted.');
     }

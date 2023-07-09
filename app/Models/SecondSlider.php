@@ -13,11 +13,9 @@ class SecondSlider extends Model
         'name_uz',
         'name_ru',
         'name_en',
-        'photos',
+        'photo',
+        'photo2',
+        'photo3',
         'link',
-    ];
-
-    protected $casts = [
-        'photos' => 'array',
     ];
 }
