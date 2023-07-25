@@ -44,7 +44,6 @@ class CategoryController extends BaseController
             'name_en' => 'required|string|max:255',
         ]);
         $category = new Category();
-
         if(!empty($validatedData['photo'])){
             $category['photo'] = $this->photoSave($validatedData['photo'], 'image/category');
         }
@@ -59,19 +58,13 @@ class CategoryController extends BaseController
         $category->name_uz = $validatedData['name_uz'];
         $category->name_ru = $validatedData['name_ru'];
         $category->name_en = $validatedData['name_en'];
+        if (!empty($validatedData['name_uz'])){
+            $category->slug = str_replace(' ', '_', strtolower($validatedData['name_uz'])) . '-' . Str::random(5);
+        }
+
         $category->save();
 
         return redirect()->route('dashboard.category.index')->with('success', 'Data uploaded successfully.');
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
     }
 
     public function update(Request $request, $id)
@@ -90,7 +83,6 @@ class CategoryController extends BaseController
             $this->fileDelete('\Category', $id, 'photo');
             $category['photo'] = $this->photoSave($validatedData['photo'], 'image/category');
         }
-
         if (!empty($validatedData['icon'])) {
             
             $this->fileDelete('\Category', $id, 'icon');
@@ -110,7 +102,10 @@ class CategoryController extends BaseController
         $category->name_ru = $validatedData['name_ru'];
         $category->name_en = $validatedData['name_en'];
         $category->ok = $validatedData['ok'];
-        
+        if (!empty($validatedData['name_uz'])){
+                    
+            $category->slug = str_replace(' ', '_', strtolower($validatedData['name_uz'])) . '-' . Str::random(5);
+        }
         $category->save();
         return redirect()->route('dashboard.category.index')->with('success', 'Data updated successfully.');
     }
@@ -123,9 +118,11 @@ class CategoryController extends BaseController
         foreach (Product::where('category_id', $id)->get() as $prod) {
             $this->productController->destroy($prod->id);
         }
-        foreach (PadCategory::where('padcategory_id', $id)->get() as $prod) {
-            $this->padcategory->destroy($prod->id);
-        }
+        // if(){
+            foreach (PadCategory::where('category_id', $id)->get() as $prod) {
+                $this->padcategory->destroy($prod->id);
+            }
+        // }
         return back()->with('success', 'Data deleted.');
     }
 }

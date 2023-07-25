@@ -24,7 +24,7 @@ $(window).on('load', () => {
 
     //_________FEEDBACK__________
 
-    $('.feedback-open').click(e => {
+    $('.feedback-open, .popup__on, .products-item__basket').click(e => {
         e.preventDefault()
         $('.feedback').fadeIn(600); 
     })

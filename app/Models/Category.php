@@ -14,6 +14,7 @@ class Category extends Model
         'name_ru',
         'name_en',
         'photo',
+        'slug',
         'icon',
         'ok',
     ];

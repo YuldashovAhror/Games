@@ -19,7 +19,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h5>Добавить документ</h5>
+                    <h5>Добавить категорию</h5>
                 </div>
                 <form action="{{ route('dashboard.padcategory.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -68,7 +68,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-10">
-                            <h5>Все документы</h5>
+                            <h5>Все категорию</h5>
                         </div>
                     </div>
                 </div>

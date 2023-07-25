@@ -164,7 +164,7 @@
                                 {{ __('asd.Сертификат производства') }}
                             </div>
                             <div>
-                                <a href="{{ $product->sertificat }}" download class="btn">
+                                <a href="{{ $product->sertificat }}" download="" class="btn">
                                     <img src="../../../issets/img/icons/download.svg" alt="ico">
                                     <span>{{ __('asd.Скачать') }}</span>
                                 </a>
@@ -270,7 +270,7 @@
                                     <img src="../../../issets/img/icons/star.svg" alt="ico">
                                 @endif
                             </div>
-                            <a href="{{ route('product.show', $product) }}" class="products-item__link"></a>
+                            <a href="{{ route('product.show', $product->slug) }}" class="products-item__link"></a>
                         </div>
                     @endforeach
 

@@ -24,7 +24,7 @@ class FrontController
         $tag = CatalogTeg::find(1);
         $sliders = Slider::orderBy('id', 'desc')->get();
         $categories = Category::with('padcategories')->orderBy('id', 'desc')->get();
-        $products = Product::orderBy('id', 'desc')->get();
+        $products = Product::all()->random()->paginate(8);
         $second_slider = SecondSlider::find(1);
         $instagram_sliders = InstagramSlider::orderBy('id', 'desc')->get();
 

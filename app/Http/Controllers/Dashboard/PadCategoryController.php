@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\PadCategory;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PadCategoryController extends Controller
 {
@@ -39,6 +40,10 @@ class PadCategoryController extends Controller
         $padcategory->name_ru = $validatedData['name_ru'];
         $padcategory->name_en = $validatedData['name_en'];
         $padcategory->category_id = $validatedData['category_id'];
+        if (!empty($validatedData['name_uz'])){
+            $padcategory->slug = str_replace(' ', '_', strtolower($validatedData['name_uz'])) . '-' . Str::random(5);
+        }
+
         $padcategory->save();
 
         return redirect()->route('dashboard.padcategory.index')->with('success', 'Data uploaded successfully.');
@@ -51,12 +56,17 @@ class PadCategoryController extends Controller
             'name_uz' => 'required|string|max:255',
             'name_ru' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
         ]);
         $padcategory = PadCategory::find($id);
         $padcategory->name_uz = $validatedData['name_uz'];
         $padcategory->name_ru = $validatedData['name_ru'];
         $padcategory->name_en = $validatedData['name_en'];
         $padcategory->category_id = $validatedData['category_id'];
+        if (!empty($validatedData['name_uz'])){
+                    
+            $padcategory->slug = $validatedData['slug'] = str_replace(' ', '_', strtolower($validatedData['name_uz'])) . '-' . Str::random(5);
+        }
         $padcategory->save();
 
         return redirect()->route('dashboard.padcategory.index')->with('success', 'Data uploaded successfully.');

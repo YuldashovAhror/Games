@@ -14,33 +14,29 @@
         <ul class="mobile-menu__list">
             <li>
                 <a href="/about">
-                    О компании
+                    {{ __('asd.О компании') }}
                 </a>
             </li>
             <li>
                 <a href="/catalog">
-                    Каталог
+                    {{ __('asd.Каталог') }}
                 </a>
             </li>
-           <li class="mobile-menu__dropdown">
-				<div>
-					Клиентам
-				</div>
-				<ul>
-					<li>
-						<a href="#">Документы таможенный союз</a>
-					</li>
-					<li>
-						<a href="#">Презентации</a>
-					</li>
-					<li>
-						<a href="#">Каталоги продукции для скачивания</a>
-					</li>
-				</ul>
-			</li>
+            <li class="mobile-menu__dropdown">
+                <div>
+                    {{ __('asd.Клиентам') }}
+                </div>
+                <ul>
+                    @foreach (App\Models\Client::orderBy('id', 'desc')->get() as $client)
+                        <li>
+                            <a href="{{$client->photo}}" download >{{$client['name_'.$lang]}}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </li>
             <li>
                 <a href="#contact">
-                    Контакты
+                    {{__('asd.Контакты')}}
                 </a>
             </li>
         </ul>
@@ -95,7 +91,7 @@
         </div>
         <div class="mobile-menu__nova">
             <a href="https://www.novastudio.uz/" class="mobile-menu__nova" target="_blank" rel="nofollow">
-                {{__('asd.created by NovaS')}}
+                {{ __('asd.created by NovaS') }}
             </a>
         </div>
     </div>

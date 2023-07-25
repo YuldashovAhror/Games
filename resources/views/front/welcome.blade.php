@@ -138,16 +138,18 @@
                                     fill="currentColor" />
                             </svg>
                         </div>
-                        <a href="#" class="category-item__link"></a>
+                        <a href="{{ route('catalog.show', $category->slug) }}" class="category-item__link"></a>
+                        @if(count($category->padcategories) != 0)
                         <div class="category-item__dropdown">
                             <ul>
                                 @foreach ($category->padcategories as $padcategory)
                                     <li>
-                                        <a href="{{route('padcategory.show', $padcategory->id)}}">{{$padcategory['name_'.$lang]}}</a>
+                                        <a href="{{route('padcategory.show', $padcategory->slug)}}">{{$padcategory['name_'.$lang]}}</a>
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
+                        @endif
                     </div>
             @endforeach
         </div>
@@ -250,7 +252,7 @@
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
                             @endif
                         </div>
-                        <a href="{{ route('product.show', $product) }}" class="products-item__link"></a>
+                        <a href="{{ route('product.show', $product->slug) }}" class="products-item__link"></a>
                     </div>
                 @endforeach
             </div>
@@ -282,8 +284,8 @@
             <div class="shop-content">
                 <div class="shop-carousel owl-carousel">
                     @foreach ($categories as $category)
-                        @if ($category->ok != null)
-                            <a href="product.html" class="shop-carousel__item shop-carousel__item-blue">
+                        @if ($category->ok != 0)
+                            <a href="{{ route('catalog.show', $category->slug) }}" class="shop-carousel__item shop-carousel__item-blue">
                                 <div class="shop-carousel__name">
                                     {{ $category['name_' . $lang] }}
                                 </div>

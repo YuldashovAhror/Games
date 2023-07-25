@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('name_uz');
             $table->string('name_ru');
             $table->string('name_en');
+            $table->string('view')->default(0);
+            $table->string('slug');
             $table->string('sertificat')->nullable();
             $table->string('title_uz')->nullable();
             $table->string('title_ru')->nullable();

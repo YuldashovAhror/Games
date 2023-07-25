@@ -81,16 +81,18 @@
                                 fill="currentColor" />
                         </svg>
                     </div>
-                    <a href="{{ route('catalog.show', $category) }}" class="category-item__link"></a>
+                    <a href="{{ route('catalog.show', $category->slug) }}" class="category-item__link"></a>
+                    @if(count($category->padcategories) != 0)
                     <div class="category-item__dropdown">
                         <ul>
                             @foreach ($category->padcategories as $padcategory)
                                 <li>
-                                    <a href="{{route('padcategory.show', $padcategory->id)}}">{{$padcategory['name_'.$lang]}}</a>
+                                    <a href="{{route('padcategory.show', $padcategory->slug)}}">{{$padcategory['name_'.$lang]}}</a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
+                    @endif
                 </div>
             @endforeach
         </div>
@@ -188,7 +190,7 @@
                                 <img src="../../../issets/img/icons/star.svg" alt="ico">
                             @endif
                         </div>
-                        <a href="{{ route('product.show', $product) }}" class="products-item__link"></a>
+                        <a href="{{ route('product.show', $product->slug) }}" class="products-item__link"></a>
                     </div>
                 @endforeach
             </div>
@@ -197,6 +199,8 @@
                     <img src="" alt="product">
                 </div>
             </div>
+            <div style="position:relative;padding-top:0;width:100%;height:800px;">
+                <iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="https://online.fliphtml5.com/wpdfe/hclk/"  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe></div>
         </div>
     </section>
 

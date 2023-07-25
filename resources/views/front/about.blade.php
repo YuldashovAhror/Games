@@ -100,16 +100,18 @@
                                     fill="currentColor" />
                             </svg>
                         </div>
-                        <a href="{{ route('catalog.show', $category) }}" class="category-item__link"></a>
+                        <a href="{{ route('catalog.show', $category->slug) }}" class="category-item__link"></a>
+                        @if(count($category->padcategories) != 0)
                         <div class="category-item__dropdown">
                             <ul>
                                 @foreach ($category->padcategories as $padcategory)
                                     <li>
-                                        <a href="{{ route('padcategory.show', $padcategory->id) }}">{{ $padcategory['name_' . $lang] }}</a>
+                                        <a href="{{ route('padcategory.show', $padcategory->slug) }}">{{ $padcategory['name_' . $lang] }}</a>
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
+                        @endif
                     </div>
                 @endforeach
             </div>

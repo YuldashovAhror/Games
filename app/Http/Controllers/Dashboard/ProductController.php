@@ -68,6 +68,9 @@ class ProductController extends BaseController
         $products->name_uz = $request['name_uz'];
         $products->name_ru = $request['name_ru'];
         $products->name_en = $request['name_en'];
+        if (!empty($request['name_uz'])){
+            $products->slug = str_replace(' ', '_', strtolower($request['name_uz'])) . '-' . Str::random(5);
+        }
         $products->category_id = $request['category_id'];
         $products->title_uz = $request['title_uz'];
         $products->title_ru = $request['title_ru'];
@@ -80,28 +83,9 @@ class ProductController extends BaseController
         $products->padcategory_id = $request['padcategory_id'];
         $products->photos = $photos;
         $products->save();
-        // dd('asd');
-        // Product::create($request);
         return back()->with('success', 'Data uploaded successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $product = Product::find($id);
@@ -114,13 +98,6 @@ class ProductController extends BaseController
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $products = Product::find($id);
@@ -148,6 +125,9 @@ class ProductController extends BaseController
         $products->name_uz = $request['name_uz'];
         $products->name_ru = $request['name_ru'];
         $products->name_en = $request['name_en'];
+        if (!empty($request['name_uz'])){
+            $products->slug = str_replace(' ', '_', strtolower($request['name_uz'])) . '-' . Str::random(5);
+        }
         $products->category_id = $request['category_id'];
         $products->title_uz = $request['title_uz'];
         $products->title_ru = $request['title_ru'];
@@ -158,10 +138,7 @@ class ProductController extends BaseController
         $products->discription_en = $request['discription_en'];
         $products->star = $request['star'];
         $products->padcategory_id = $request['padcategory_id'];
-
         $products->save();
-        // dd('asd');
-        // Product::create($request);
         return back()->with('success', 'Data updated successfully.');
     }
 

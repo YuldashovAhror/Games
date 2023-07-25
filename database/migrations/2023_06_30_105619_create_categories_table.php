@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name_ru');
             $table->string('name_en');
             $table->string('photo')->nullable();
+            $table->string('slug');
             $table->string('icon')->nullable();
             $table->boolean('ok')->default(0);
             $table->timestamps();

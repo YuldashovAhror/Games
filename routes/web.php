@@ -43,7 +43,15 @@ Route::get('/feedback', [FrontFeedbackController::class, 'store']);
 Route::get('/product/{id}/show', [FrontProductController::class, 'show'])->name('product.show');
 Route::get('/padcategory/{id}/show', [FrontProductController::class, 'padshow'])->name('padcategory.show');
 Route::get('/catalog/{id}/show', [CatalogController::class, 'show'])->name('catalog.show');
-
+Route::get('/optimize', function (){
+            \Illuminate\Support\Facades\Artisan::call('route:clear');
+            \Illuminate\Support\Facades\Artisan::call('cache:clear');
+            \Illuminate\Support\Facades\Artisan::call('config:clear');
+            \Illuminate\Support\Facades\Artisan::call('config:cache');
+            \Illuminate\Support\Facades\Artisan::call('route:cache');
+            \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+            return 'success';
+        });
 //Dashboard
 Route::group(['prefix' => 'dashboard'], function (){
     Route::name('dashboard.')->group(function (){
@@ -65,6 +73,15 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::get('dashboard/hometeg', [TagsController::class, 'home'])->name('home.teg');
         Route::put('dashboard/{id}/hometeg', [TagsController::class, 'update'])->name('tags.update');
         Route::get('dashboard/words', [WordController::class, 'index'])->name('words.index');
+        Route::get('/optimize', function (){
+            \Illuminate\Support\Facades\Artisan::call('route:clear');
+            \Illuminate\Support\Facades\Artisan::call('cache:clear');
+            \Illuminate\Support\Facades\Artisan::call('config:clear');
+            \Illuminate\Support\Facades\Artisan::call('config:cache');
+            \Illuminate\Support\Facades\Artisan::call('route:cache');
+            \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+            return 'success';
+        });
     });
 });
 

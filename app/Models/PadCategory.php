@@ -14,6 +14,7 @@ class PadCategory extends Model
         'name_uz',
         'name_ru',
         'name_en',
+        'slug',
     ];
 
     public function products()
